@@ -1,11 +1,9 @@
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { fetchBreweries } from "../../Redux/actionCreators";
 
 const Home = (props) => {
-    return(
-        <div>
-            You must be authorized to see this page.
-        </div>
-    )
-}
+  // fetchBreweries:
+  return <div>You must be authorized to see this page.</div>;
+};
 
 export default Home;
