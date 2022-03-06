@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import {Link} from 'react-router-dom'
 import { useState } from 'react';
 import BreweryList from '../Login/BreweryList';
@@ -41,14 +41,5 @@ const handleClick = () => {
         </div>
     )
 }
-=======
-import { Link } from "react-router-dom";
-import { fetchBreweries } from "../../Redux/actionCreators";
-
-const Home = (props) => {
-  // fetchBreweries:
-  return <div>You must be authorized to see this page.</div>;
-};
->>>>>>> 4235b9fe8d8db297c3e30f07f69ab4d96c5555bb
 
 export default Home;
