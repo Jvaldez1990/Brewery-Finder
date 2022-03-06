@@ -2,8 +2,6 @@ package com.techelevator.model;
 import java.math.BigDecimal;
 
 public class Beer {
-
-
     // Instance Variables
     private Long id;
     private String name;

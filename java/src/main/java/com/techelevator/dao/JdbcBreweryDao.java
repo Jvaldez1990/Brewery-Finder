@@ -1,6 +1,9 @@
 package com.techelevator.dao;
 import com.techelevator.model.Brewery;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
@@ -10,9 +13,12 @@ import java.util.List;
 @Component
 public class JdbcBreweryDao implements BreweryDao {
     private JdbcTemplate jdbcTemplate;
+    private SimpleJdbcInsert simpleJdbcInsert;
+
 
     public JdbcBreweryDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("breweries").usingGeneratedKeyColumns("id");
     }
 
     @Override
@@ -42,19 +48,39 @@ public class JdbcBreweryDao implements BreweryDao {
     }
 
     @Override
-    public void addNewBrewery(Brewery aBrewery) {
-        String sqlAddBrewery = "INSERT INTO breweries (name, address, city,"
-                + "zipcode, phone_number, description, brewery_logo_url, website_url,"
-                + "user_id, hours, lat, lng) VALUES (?, ?, ?, ?, ?, ?, ?, ?,"
-                + "?, ?, ?, ?)";
-        jdbcTemplate.update(sqlAddBrewery, aBrewery.getName(), aBrewery.getAddress(),
-                aBrewery.getCity(), aBrewery.getZipcode(), aBrewery.getPhoneNumber(),
-                aBrewery.getDescription(), aBrewery.getBreweryLogoUrl(), aBrewery.getWebsiteUrl(),
-                aBrewery.getUserId(), aBrewery.getHours());
+    public Brewery addNewBrewery(Brewery aBrewery) {
+//        String sqlAddBrewery = "INSERT INTO breweries (name, address, city,"
+//                + "zipcode, phone_number, description, brewery_logo_url, website_url,"
+//                + "user_id, hours, lat, lng) VALUES (?, ?, ?, ?, ?, ?, ?, ?,"
+//                + "?, ?, ?, ?)";
+//        jdbcTemplate.update(sqlAddBrewery, aBrewery.getName(), aBrewery.getAddress(),
+//                aBrewery.getCity(), aBrewery.getZipcode(), aBrewery.getPhoneNumber(),
+//                aBrewery.getDescription(), aBrewery.getBreweryLogoUrl(), aBrewery.getWebsiteUrl(),
+//                aBrewery.getUserId(), aBrewery.getHours());
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("name", aBrewery.getName())
+                .addValue("address", aBrewery.getAddress())
+                .addValue("city", aBrewery.getCity())
+                .addValue("zipcode", aBrewery.getZipcode())
+                .addValue("phone_number", aBrewery.getPhoneNumber())
+                .addValue("description", aBrewery.getDescription())
+                .addValue("brewery_logo_url", aBrewery.getBreweryLogoUrl())
+                .addValue("website_url", aBrewery.getWebsiteUrl())
+                .addValue("user_id", aBrewery.getUserId())
+                .addValue("hours", aBrewery.getHours());
+        int id = (int) simpleJdbcInsert.executeAndReturnKey(parameters);
+
+        Brewery brewery = null;
+        String sqlGetABrewery = "SELECT * FROM breweries WHERE brewery_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetABrewery, id);
+        while (results.next()) {
+            brewery = mapRowToBrewery(results);
+        }
+        return brewery;
     }
 
     @Override
-    public void updateBrewery(Brewery aBrewery) {
+    public Brewery updateBrewery(Brewery aBrewery) {
         String sqlUpdateBrewery = "UPDATE breweries SET name = ?, address = ?,"
                 + " city = ?, zipcode = ?, phone_number = ?, description = ?, "
                 + "brewery_logo_url = ?, user_id = ?, hours = ?, lat = ?, lng = ?"
@@ -63,6 +89,14 @@ public class JdbcBreweryDao implements BreweryDao {
                 aBrewery.getCity(), aBrewery.getZipcode(), aBrewery.getPhoneNumber(),
                 aBrewery.getDescription(), aBrewery.getBreweryLogoUrl(), aBrewery.getUserId(),
                 aBrewery.getHours(), aBrewery.getBreweryId());
+
+        Brewery brewery = null;
+        String sqlGetABrewery = "SELECT * FROM breweries WHERE brewery_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetABrewery, aBrewery.getBreweryId());
+        while (results.next()) {
+            brewery = mapRowToBrewery(results);
+        }
+        return brewery;
     }
 
     @Override

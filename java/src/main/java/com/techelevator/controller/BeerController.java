@@ -34,13 +34,8 @@ public class BeerController {
 
     @PreAuthorize("permitAll")
     @RequestMapping(path="/beers", method=RequestMethod.GET)
-    public List<Beer> showAllBeers(ModelMap modelHolder) {
-        List<Beer> beerList = beerDAO.getAllBeer();
-        List<Brewery> breweries = breweryDAO.getAllBreweries();
-
-        modelHolder.put("allBeers", beerList);
-        modelHolder.put("allBreweries", breweries);
-        return beerList;
+    public List<Beer> showAllBeers() {
+        return beerDAO.getAllBeer();
     }
 
     @PreAuthorize("permitAll")
@@ -49,13 +44,13 @@ public class BeerController {
         return beerDAO.getBeerByID(beerId);
     }
 
-    //@PreAuthorize("hasRole('ROLE_BREWER')")
+
     @RequestMapping(path="/addBeer", method=RequestMethod.GET)
-    public String showAddBeer() throws NotAllowedException {
-        return "addBeer";
+    public Beer showAddBeer(@RequestBody Beer aBeer) throws NotAllowedException {
+        return beerDAO.saveBeer(aBeer);
     }
 
-    //@PreAuthorize("hasRole('ROLE_BREWER')")
+
     @RequestMapping(path = "/beers/{beerId}", method = RequestMethod.DELETE)
     public void deleteABeer(@PathVariable Long beerId) throws NotAllowedException {
         beerDAO.deleteBeer(beerId);
@@ -67,10 +62,9 @@ public class BeerController {
         return beerDAO.getBeerByBreweryID(breweryId);
     }
 
-    //@PreAuthorize("hasRole('ROLE_BREWER')")
     @RequestMapping(path= "/beers", method = RequestMethod.PUT)
-    public void updateBeer(@RequestBody Beer aBeer) throws NotAllowedException {
-        beerDAO.updateBeer(aBeer);
+    public Beer updateBeer(@RequestBody Beer aBeer) throws NotAllowedException {
+        return beerDAO.updateBeer(aBeer);
     }
 
 

@@ -7,7 +7,7 @@ public interface BeerDao {
 
     List<Beer> getAllBeer();
 
-    void saveBeer(Beer newBeer);
+    Beer saveBeer(Beer newBeer);
 
     void deleteBeer(Long beerId);
 
@@ -15,6 +15,6 @@ public interface BeerDao {
 
     List <Beer> getBeerByBreweryID(Long breweryId);
 
-    void updateBeer(Beer aBeer);
+    Beer updateBeer(Beer aBeer);
 
 }

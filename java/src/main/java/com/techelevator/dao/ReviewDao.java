@@ -11,10 +11,10 @@ public interface ReviewDao {
 
     List<Review> getReviews(Long beer_id);
 
-    void addReview(Review aReview);
+    Review addReview(Review aReview);
 
-    void saveReview(@Valid Review review);
-
-    List<Review> searchReviewsByBeerId(long beerId);
+//    void saveReview(@Valid Review review);
+//
+//    List<Review> searchReviewsByBeerId(long beerId);
 
 }
