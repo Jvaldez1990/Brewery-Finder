@@ -19,6 +19,7 @@ public class BreweryController {
         this.BreweryDao = BreweryDao;
     }
 
+    // Get List of Breweries
     @PreAuthorize("permitAll")
     @RequestMapping(path = "/breweries", method = RequestMethod.GET)
     public List<Brewery> getAllBreweries(){
@@ -53,7 +54,7 @@ public class BreweryController {
         BreweryDao.deleteBrewery(breweryId);
     }
 
-    //Get Brewery by user id
+    //Get Brewery by //USER// id
     @RequestMapping(path = "/users/{userId}/breweries", method = RequestMethod.GET)
     public List<Brewery> getBreweriesByUserId(@PathVariable Long userId) throws NotFoundException{
         return BreweryDao.getBreweryByUserID(userId);

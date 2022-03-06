@@ -23,7 +23,6 @@ public class JdbcBeerDao implements BeerDao {
     public JdbcBeerDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("beers").usingGeneratedKeyColumns("beer_id");
-
     }
 
     @Override

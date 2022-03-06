@@ -22,6 +22,8 @@ public class JdbcReviewDao implements ReviewDao {
         this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("reviews").usingGeneratedKeyColumns("reviews_id");
     }
 
+    /* Return Review List  */
+
     @Override
     public List<Review> getReviews(Long beerId){
         List<Review> reviews = new ArrayList<>();
@@ -35,6 +37,7 @@ public class JdbcReviewDao implements ReviewDao {
         return reviews;
     }
 
+    /* Create and return Review object  */
     @Override
     public Review addReview(Review aReview) {
 //        String sqlAddReview = "INSERT INTO reviews (description, rating, beer_id, user_id, name) VALUES (?,?,?,?,?)";
@@ -51,8 +54,8 @@ public class JdbcReviewDao implements ReviewDao {
         int id = (int) simpleJdbcInsert.executeAndReturnKey(parameters);
 
         Review review = null;
-        String sqlGetReviewByBeerId = "SELECT * FROM reviews WHERE beer_id = ? ORDER BY create_date";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetReviewByBeerId, aReview.getBeerId());
+        String sqlGetReviewByBeerId = "SELECT * FROM reviews WHERE reviews_id = ? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetReviewByBeerId, id);
 
         while(results.next()) {
             review = mapRowToReview(results);
