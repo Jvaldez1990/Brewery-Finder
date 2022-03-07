@@ -2,7 +2,6 @@
 import {Link} from 'react-router-dom'
 import { useState } from 'react';
 import BreweryList from '../Login/BreweryList';
-import AddPost from '../add/update/AddBeer';
 
 const Home = () => {
 

@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import Card from '../../../Shared/Card'
 import RatingSelect from '../RatingSelect'
+import { connect } from 'react-redux'
+import { addBeer } from '../../../Redux/actionCreators'
 
-function AddPost({ onAdd }) {
+function AddPost() {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
-    const [breweryRating, setBreweryRating] = useState()
+    const [beerRating, setBeerRating] = useState()
 
     const onSubmit = (e) => {
       e.preventDefault() 
@@ -21,9 +23,8 @@ function AddPost({ onAdd }) {
         return
       }
 
-      onAdd({ title, body, breweryRating})
 
-      setBreweryRating()
+      setBeerRating()
       setBody('')
       setTitle('')
     }
@@ -32,7 +33,7 @@ function AddPost({ onAdd }) {
     <Card>
     <form onSubmit={onSubmit}>
       <h2>How would rate our Service?</h2>
-      <RatingSelect select={setBreweryRating} selected={breweryRating} />
+      <RatingSelect select={setBeerRating} selected={beerRating} />
         <div className='form-control'>
             <label>Add Beer</label>
             <input type="text" 
@@ -55,4 +56,4 @@ function AddPost({ onAdd }) {
   )
 }
 
-export default AddPost
+export default connect(null, { addBeer })(AddPost)
