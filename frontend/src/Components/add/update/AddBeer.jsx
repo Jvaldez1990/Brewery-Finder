@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import Card from '../../../Shared/Card'
 import RatingSelect from '../RatingSelect'
-import { connect } from 'react-redux'
-import { addBrewery } from '../Redux/actionCreators.js'
 
 function AddPost({ onAdd }) {
     const [title, setTitle] = useState('')
@@ -25,7 +23,7 @@ function AddPost({ onAdd }) {
 
       onAdd({ title, body, breweryRating})
 
-      setBeerRating()
+      setBreweryRating()
       setBody('')
       setTitle('')
     }
@@ -36,7 +34,7 @@ function AddPost({ onAdd }) {
       <h2>How would rate our Service?</h2>
       <RatingSelect select={setBreweryRating} selected={breweryRating} />
         <div className='form-control'>
-            <label>Add brewery</label>
+            <label>Add Beer</label>
             <input type="text" 
             placeholder='Add Beer'
             value={title}

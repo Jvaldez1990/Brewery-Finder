@@ -10,3 +10,14 @@ export const Breweries = (state = { breweries: [] }, action) => {
       return state;
   }
 };
+
+export const Beers =( state = {beers: [] }, action) => {
+  switch(action.type) {
+    case ActionTypes.ADD_BEER:
+      return {...state,
+      beers: action.payload };
+      
+      default:
+        return state;
+  }
+}

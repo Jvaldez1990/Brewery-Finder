@@ -25,3 +25,16 @@ export const fetchBreweries = () => async (dispatch) => {
   const breweries = await response.json();
   return dispatch(addBrewery(breweries));
 };
+
+export const addBeer = (beers) => ({
+  type: ActionTypes.ADD_BEER,
+  payload: beers,
+});
+
+export const fetchBeer = () => async (dispatch) => {
+  const response = await fetch(baseUrl + "beers");
+  const beers = await response.json();
+  return dispatch(addBeer(beers))
+}
+
+
