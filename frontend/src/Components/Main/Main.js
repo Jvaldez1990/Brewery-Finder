@@ -39,7 +39,13 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={
+          {
+            //   backgroundColor: "blue",
+          }
+        }
+      >
         {this.props.token.token !== undefined ? (
           <div>
             <Link to="/breweries">Breweries | </Link>
@@ -55,6 +61,7 @@ class Main extends Component {
             <Link to="/breweries"> Breweries | </Link>
           </>
         )}
+
         <Switch>
           <Route exact path="/breweries/:id" component={Brewery} />
           <Route path="/beer/:id" component={Beer} />

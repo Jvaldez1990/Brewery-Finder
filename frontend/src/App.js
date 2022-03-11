@@ -12,11 +12,13 @@ const store = ConfigureStore();
 function App() {
   return (
     <Provider store={store}>
-      <Navbar />
       <BrowserRouter>
-        {/* <Home /> */}
-        {/* <Login></Login> */}
-        <Main />
+        <div style={{ backgroundColor: "#DDA74F" }}>
+          <Navbar />
+          {/* <Home /> */}
+          {/* <Login></Login> */}
+          <Main />
+        </div>
         {/* <BreweriesComponent /> */}
       </BrowserRouter>
     </Provider>

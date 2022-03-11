@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 
 /* base styles */
 * {
   margin: 0;
   font-family: "Arimo";
   color: #333;
+}
+body {
+  background-color: #a76b09;
 }
 .navbar {
   padding: 20px;
@@ -16,7 +18,7 @@
   border-bottom: 1px solid #f2f2f2;
 }
 .navbar h1 {
-  color: #A76B09;
+  color: #a76b09;
 }
 .navbar .links {
   margin-left: auto;
@@ -27,7 +29,7 @@
   padding: 6px;
 }
 .navbar a:hover {
-  color: #A76B09;
+  color: #a76b09;
 }
 .content {
   max-width: 600px;
@@ -42,11 +44,11 @@
   border-bottom: 1px solid #fafafa;
 }
 .brewery-preview:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
 }
 .brewery-preview h2 {
   font-size: 20px;
-  color: #A76B09;
+  color: #a76b09;
   margin-bottom: 8px;
 }
 

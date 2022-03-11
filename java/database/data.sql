@@ -164,17 +164,17 @@ INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
 
 INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
 ('Not enough Oats',
-'I didnt get my oats for this. 4/10 would not reccomend',
+'I didnt get my oats for this. 4/10 would not recommend',
 2, now(), 1);
 
 INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
-('BLM',
+('LOVE',
 'Yes',
 5,now(), 2);
 
 INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
 ('Not enough Black',
-'I didnt get my Black for this. 4/10 would not reccomend',
+'I didnt get my Black for this. 4/10 would not recommend',
 2,now(), 2);
 
 INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
@@ -184,7 +184,7 @@ INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
 
 INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
 ('Not enough down under',
-'I didnt get my down for this. 6/10 would not reccomend',
+'I didnt get my down for this. 6/10 would not recommend',
 3,now(), 3);
 
 INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
@@ -194,7 +194,7 @@ INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
 
 INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
 ('Not enough Fortitude',
-'I didnt get my fortitude for this. 4/10 would not reccomend',
+'I didnt get my fortitude for this. 4/10 would not recommend',
 2,now(), 4);
 
 INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
@@ -204,7 +204,7 @@ INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
 
 INSERT INTO reviews (name, description, rating, create_date, beer_id) VALUES
 ('Not enough dog',
-'I didnt get my dog for this. 4/10 would not reccomend',
+'I didnt get my dog for this. 4/10 would not recommend',
 2,now(), 5);
 
 COMMIT TRANSACTION;
