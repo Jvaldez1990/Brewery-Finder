@@ -59,6 +59,7 @@ export class Beer extends Component {
 
   componentDidMount() {
     console.log(this.props.location.state.beer);
+    console.log(this.props.location.state.user);
     console.log(this.state.user.user.user.authorities[0].name);
 
     if (this.state.user.user.user.authorities[0].name == "ROLE_USER") {

@@ -62,10 +62,10 @@ class Main extends Component {
 
         <Switch>
           <Route exact path="/breweries/:id" component={Brewery} />
-          <Route path="/beer/:id" component={Beer} />
+          <Route exact path="/beer/:id" component={Beer} />
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
-          <Route path="/breweries" component={() => <BreweriesComponent />} />
+          <Route path="/breweries" component={() => <BreweriesComponent BreweriesComponent user={this.props.user} />} />
           <Route path="/BreweryPage" component={() => <BreweryPage />} />
           <Route path="/home" component={this.props.token.token !== undefined ? () => <Home /> : null} />
           <Redirect to="/breweries" />
