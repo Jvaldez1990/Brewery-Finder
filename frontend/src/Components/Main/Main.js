@@ -10,6 +10,7 @@ import Navbar from "../Home/Navbar";
 import BreweriesComponent from "../BreweriesComponent";
 import Brewery from "../Brewery";
 import Beer from "../Beer";
+import BreweryPage from "../add/update/BreweryPage";
 
 const mapStateToProps = (state) => {
   return {
@@ -50,6 +51,7 @@ class Main extends Component {
           <div>
             <Link to="/breweries">Breweries | </Link>
             <Link to="/home">Home | </Link>
+            <Link to='/BreweryPage'>Add Brewery |</Link>
             <Link to="/login" onClick={this.handleLogout}>
               Logout
             </Link>
@@ -58,6 +60,7 @@ class Main extends Component {
         ) : (
           <>
             <Link to="/login"> Home |</Link>
+            <Link to='/BreweryPage'>Add Brewery |</Link>
             <Link to="/breweries"> Breweries | </Link>
           </>
         )}
@@ -68,6 +71,7 @@ class Main extends Component {
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
           <Route path="/breweries" component={() => <BreweriesComponent />} />
+          <Route path="/BreweryPage" component={() => <BreweryPage />}/>
           <Route path="/home" component={this.props.token.token !== undefined ? () => <Home /> : null} />
           <Redirect to="/login" />
         </Switch>

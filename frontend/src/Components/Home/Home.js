@@ -2,6 +2,7 @@
 import {Link} from 'react-router-dom'
 import { useState } from 'react';
 import BreweryList from '../Login/BreweryList';
+import AddBrewery from '../add/update/AddBrewery';
 
 const Home = () => {
 
@@ -38,6 +39,7 @@ const handleClick = () => {
             <h2>Homepage</h2>
             <p>{ name } is { age } years old</p>
             <button onClick= {handleClick}>Search</button>
+            <AddBrewery />
         </div>
     )
 }
