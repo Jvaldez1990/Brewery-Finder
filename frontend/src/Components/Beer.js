@@ -6,21 +6,19 @@ import { Link } from "react-router-dom";
 import { CardBody } from "reactstrap";
 import { Form } from "react-bootstrap";
 
-const required = (val) => val && val.length;
-const maxLength = (len) => (val) => !val || val.length <= len;
-const minLength = (len) => (val) => val && val.length >= len;
-
 export class Beer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       beer: this.props.location.state,
+      user: this.props.location.state,
       reviews: [],
       isModalVisible: false,
       name: "",
       description: "",
       rating: "",
+      isRoleUser: false,
     };
   }
 
@@ -55,11 +53,16 @@ export class Beer extends Component {
     this.setState({
       isModalVisible: !this.state.isModalVisible,
     });
-    console.log(this.state.title);
+    // console.log(this.state.title);
     this.postComment();
   };
 
   componentDidMount() {
+    console.log(this.props.location.state);
+    console.log(this.state.user.user.user.authorities[0].name);
+    if (this.state.user.user.user.authorities[0].name == "ROLE_USER") {
+      this.setState({ isRoleUser: true });
+    }
     fetch(baseUrl + "/reviews/" + this.state.beer.beer.id)
       .then((response) => response.json())
       .then((response) => this.setState({ reviews: response }));
@@ -77,10 +80,12 @@ export class Beer extends Component {
           <h1>{beer.rating}</h1>
         </div>
         <div>
-          <Button onClick={this.toggleModal}>
-            <EditOutlined />
-            add review
-          </Button>
+          {this.state.isRoleUser ? (
+            <button className="hidden" onClick={this.toggleModal}>
+              <EditOutlined />
+              add review
+            </button>
+          ) : null}
           <Modal title="Add Review" visible={this.state.isModalVisible} onCancel={this.toggleModal} onOk={this.handleSubmit}>
             <Form>
               <label>Title</label>
@@ -105,23 +110,9 @@ export class Beer extends Component {
           <Row gutter={[16, 16]} className="brewery-card-container">
             {this.state.reviews.map((review) => (
               <Col xs={24} sm={12} lg={6} className="brewery-card" key={review.id}>
-                {/* <Link
-                  to={{
-                    pathname: `/breweries/${location.breweryId}`,
-                    state: {
-                      brewery: location,
-                    },
-                  }}
-                > */}
-                <Card
-                  className="bg-info"
-                  title={`${review.name}`}
-                  //   extra={<img width={100} className="brewery-image" src={review.breweryLogoUrl} />}
-                  hoverable
-                >
+                <Card className="bg-info" title={`${review.name}`} hoverable>
                   <CardBody>{review.description}</CardBody>
                 </Card>
-                {/* </Link> */}
               </Col>
             ))}
           </Row>

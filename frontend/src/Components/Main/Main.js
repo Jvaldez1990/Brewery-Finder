@@ -53,11 +53,11 @@ class Main extends Component {
             <Link to="/login" onClick={this.handleLogout}>
               Logout
             </Link>
-            <Redirect to="/home" />
+            <Redirect to="/breweries" />
           </div>
         ) : (
           <>
-            <Link to="/login"> Home |</Link>
+            <Link to="/login"> Login |</Link>
             <Link to="/breweries"> Breweries | </Link>
           </>
         )}
@@ -67,9 +67,9 @@ class Main extends Component {
           <Route path="/beer/:id" component={Beer} />
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
-          <Route path="/breweries" component={() => <BreweriesComponent />} />
+          <Route path="/breweries" component={() => <BreweriesComponent user={this.props.user} />} />
           <Route path="/home" component={this.props.token.token !== undefined ? () => <Home /> : null} />
-          <Redirect to="/login" />
+          <Redirect to="/breweries" />
         </Switch>
       </div>
     );

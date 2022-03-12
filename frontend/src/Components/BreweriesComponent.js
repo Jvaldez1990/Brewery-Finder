@@ -13,6 +13,7 @@ export class BreweriesComponent extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.user);
     fetch(baseUrl + "/breweries")
       .then((response) => response.json())
       .then((response) => this.setState({ breweries: response }));
@@ -30,6 +31,7 @@ export class BreweriesComponent extends Component {
                 pathname: `/breweries/${location.breweryId}`,
                 state: {
                   brewery: location,
+                  user: this.props.user,
                 },
               }}
             >
