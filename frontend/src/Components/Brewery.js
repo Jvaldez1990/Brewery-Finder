@@ -47,9 +47,9 @@ export class Brewery extends Component {
         </div>
         <div class="row">
           <div class="col">
-            <Card reverse="true">
+            {/* <Card reverse="true">
               <AddBeer />
-            </Card>
+            </Card> */}
           </div>
           <div class="col">
             <Row gutter={[16, 16]} className="brewery-card-container">
