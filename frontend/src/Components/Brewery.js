@@ -11,6 +11,7 @@ export class Brewery extends Component {
 
     this.state = {
       brewery: this.props.location.state,
+      user: this.props.location.state,
       beers: [],
     };
   }
@@ -18,7 +19,9 @@ export class Brewery extends Component {
 
   componentDidMount() {
     const { brewery } = this.state.brewery;
-    console.log(brewery);
+    const { user } = this.state.user;
+    console.log(this.props.location.state.user);
+    console.log(this.props.location.state.brewery);
     fetch(baseUrl + `/breweries/${brewery.breweryId}/beers`)
       .then((response) => response.json())
       .then((response) => this.setState({ beers: response }));
@@ -61,6 +64,7 @@ export class Brewery extends Component {
                             pathname: `/beer/${beer.id}`,
                             state: {
                               beer: beer,
+                              user: this.props.location.state,
                             },
                           }}
                         >
