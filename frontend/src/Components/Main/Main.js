@@ -39,13 +39,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div
-        style={
-          {
-            //   backgroundColor: "blue",
-          }
-        }
-      >
+      <div>
         {this.props.token.token !== undefined ? (
           <div>
             <Link to="/breweries">Breweries | </Link>
@@ -58,7 +52,8 @@ class Main extends Component {
         ) : (
           <>
             <Link to="/login"> Login |</Link>
-            <Link to="/breweries"> Breweries | </Link>
+            <Link to="/register"> Register</Link>
+            <Redirect to="/login" />
           </>
         )}
 

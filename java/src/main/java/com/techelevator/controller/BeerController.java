@@ -2,6 +2,8 @@ package com.techelevator.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -45,9 +47,10 @@ public class BeerController {
     }
 
 
-    @RequestMapping(path="/addBeer", method=RequestMethod.GET)
-    public Beer showAddBeer(@RequestBody Beer aBeer) throws NotAllowedException {
-        return beerDAO.saveBeer(aBeer);
+    @RequestMapping(path="/addBeer", method=RequestMethod.POST)
+    public ResponseEntity<Beer> showAddBeer(@RequestBody Beer aBeer) throws NotAllowedException {
+        Beer beer = beerDAO.saveBeer(aBeer);
+        return new ResponseEntity<>(beer, HttpStatus.CREATED);
     }
 
 

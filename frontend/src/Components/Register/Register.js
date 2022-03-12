@@ -51,6 +51,7 @@ const Register = (props) => {
         onChange={(e) => setConfirmPassword(e.target.value)}
         required
       />
+      <label>Are you a Brewer?</label>
       <input
         type={"checkbox"}
         placeholder="Are you a brewer?"
@@ -59,11 +60,11 @@ const Register = (props) => {
         class="brewerCheckbox"
         onChange={(e) => setBrewerRole("ROLE_BREWER")}
       ></input>
-
+      <br />
       <Link to="/login">Have an account?</Link>
 
       <button type="submit" onClick={handleSubmit}>
-        Create Account
+        <Link to="/login">Create Account</Link>
       </button>
     </div>
   );

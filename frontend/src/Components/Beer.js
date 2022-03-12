@@ -58,11 +58,13 @@ export class Beer extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.location.state);
+    console.log(this.props.location.state.beer);
     console.log(this.state.user.user.user.authorities[0].name);
+
     if (this.state.user.user.user.authorities[0].name == "ROLE_USER") {
       this.setState({ isRoleUser: true });
     }
+
     fetch(baseUrl + "/reviews/" + this.state.beer.beer.id)
       .then((response) => response.json())
       .then((response) => this.setState({ reviews: response }));
@@ -81,11 +83,13 @@ export class Beer extends Component {
         </div>
         <div>
           {this.state.isRoleUser ? (
-            <button className="hidden" onClick={this.toggleModal}>
+            <button onClick={this.toggleModal}>
               <EditOutlined />
               add review
             </button>
-          ) : null}
+          ) : (
+            <div></div>
+          )}
           <Modal title="Add Review" visible={this.state.isModalVisible} onCancel={this.toggleModal} onOk={this.handleSubmit}>
             <Form>
               <label>Title</label>

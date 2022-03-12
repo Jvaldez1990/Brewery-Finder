@@ -24,20 +24,20 @@ export class BreweriesComponent extends Component {
 
     return (
       <Row gutter={[16, 16]} className="brewery-card-container">
-        {this.state.breweries.map((location) => (
-          <Col xs={24} sm={12} lg={6} className="brewery-card" key={location.id}>
+        {this.state.breweries.map((brewery) => (
+          <Col xs={24} sm={12} lg={6} className="brewery-card" key={brewery.id}>
             <Link
               to={{
-                pathname: `/breweries/${location.breweryId}`,
+                pathname: `/breweries/${brewery.breweryId}`,
                 state: {
-                  brewery: location,
+                  brewery: brewery,
                   user: this.props.user,
                 },
               }}
             >
               <Card
-                title={`${location.name}`}
-                extra={<img width={100} className="brewery-image" src={location.breweryLogoUrl} />}
+                title={`${brewery.name}`}
+                extra={<img width={100} className="brewery-image" src={brewery.breweryLogoUrl} />}
                 hoverable
               ></Card>
             </Link>
