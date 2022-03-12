@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, route} from "react-router-dom";
+import BreweryPage from "../add/update/BreweryPage";
 
 const Navbar = () => {
   return (
