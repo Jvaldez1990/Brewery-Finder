@@ -25,24 +25,37 @@ function AddBrewery() {
     validate={validate}
     render={({ handleSubmit }) => ( 
         <form onSubmit={handleSubmit}>
-         <div>
+         <div className='mb-3'>
             <label>Brewery Name</label>
-            <Field name="breweryName" component="input" placeholder="Brewery Name" />
+            <Field name="breweryName" component="input" placeholder="Brewery Name" className='form-control'/>
          </div>
-         <div>
+         <div className='mb-3'>
            <label>Description</label>
           <Field
               name="Des"
               render={({ input, meta }) => (
                 <div>
-                  <textarea {...input} />
+                  <textarea {...input}  className='form-control' rows='3' />
+                  {meta.touched && meta.error && <div>{meta.error}</div>}
+                </div>
+              )}
+          />
+         </div>
+         <div class="input-group mb-3">
+           <label>Logo</label>
+          <Field
+              name="Des"
+              render={({ input, meta }) => (
+                  <div >
+                  <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                  <input {...input} type="file" class="form-control" id="inputGroupFile01" />
                   {meta.touched && meta.error && <div>{meta.error}</div>}
                 </div>
               )}
           />
          </div>
          <br />
-         <button type="submit">Submit</button>
+         <button type="submit" class="btn btn-primary mb-3"  >Submit</button>
         </form>
     )
   } />

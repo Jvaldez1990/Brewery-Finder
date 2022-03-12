@@ -28,27 +28,27 @@ function AddPost() {
     validate={validate}
     render={({ handleSubmit }) => ( 
         <form onSubmit={handleSubmit}>
-         <div>
-            <label>Beer Name</label>
-            <Field name="Name" component="input" placeholder="Beer Name" />
-         </div>
-         <div>
+          <div className='mb-3'>
+            <label>Beer Name</label> 
+            <Field name="Name" component="input" placeholder="Beer Name" className='form-control' />
+          </div>
+          <div className='mb-3'>
            <label>Description</label>
           <Field
               name="Des"
               render={({ input, meta }) => (
                 <div>
-                  <textarea {...input} />
+                  <textarea {...input}  className='form-control' rows='3' />
                   {meta.touched && meta.error && <div>{meta.error}</div>}
                 </div>
               )}
           />
          </div>
          <br />
-         <button type="submit">Submit</button>
+         <button type="submit" class="btn btn-primary mb-3" >Submit</button>
         </form>
     )
-  } />
+  }  class="dropdown-menu p-4" />
   )
   
 }
