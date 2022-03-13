@@ -19,6 +19,8 @@ export class Beer extends Component {
       description: "",
       rating: "",
       isRoleUser: false,
+      ratingTotal: 0,
+      numberOfReviews: 1,
     };
   }
 
@@ -60,9 +62,9 @@ export class Beer extends Component {
   componentDidMount() {
     console.log(this.props.location.state.beer);
     console.log(this.props.location.state.user);
-    console.log(this.state.user.user.user.authorities[0].name);
+    // console.log(this.state.user.user.user.authorities[0].name);
 
-    if (this.state.user.user.user.authorities[0].name == "ROLE_USER") {
+    if (this.state.user.user.authorities[0].name == "ROLE_USER") {
       this.setState({ isRoleUser: true });
     }
 
@@ -71,6 +73,14 @@ export class Beer extends Component {
       .then((response) => this.setState({ reviews: response }));
   }
   render() {
+    let scoreTotal = 0;
+    let scoreNum = 1;
+
+    for (let index = 0; index < this.state.reviews.length; index++) {
+      scoreTotal += this.state.reviews[index].rating;
+      scoreNum++;
+    }
+
     const { beer } = this.state.beer;
     return (
       <div className="container col-9 mt-3">
@@ -80,7 +90,6 @@ export class Beer extends Component {
           <h1>{beer.info}</h1>
           <h1>{beer.type}</h1>
           <h1>{beer.abv}</h1>
-          <h1>{beer.rating}</h1>
         </div>
         <div>
           {this.state.isRoleUser ? (
@@ -99,13 +108,7 @@ export class Beer extends Component {
               <br />
               <label>Description</label>
               <br />
-              <textarea
-                name="description"
-                id="description"
-                cols="50"
-                rows="6"
-                onChange={(e) => this.setState({ description: e.target.value })}
-              ></textarea>
+              <textarea name="description" id="description" cols="50" rows="6" onChange={(e) => this.setState({ description: e.target.value })}></textarea>
               <br />
               <label>Rating</label>
               <br />
@@ -116,12 +119,20 @@ export class Beer extends Component {
             {this.state.reviews.map((review) => (
               <Col xs={24} sm={12} lg={6} className="brewery-card" key={review.id}>
                 <Card className="bg-info" title={`${review.name}`} hoverable>
-                  <CardBody>{review.description}</CardBody>
+                  <CardBody>
+                    {review.description}
+                    {/* {(scoreTotal += review.rating)}
+                    {scoreNum++} */}
+                    {/* {this.setState({ ratingTotal: this.state.ratingTotal + review.rating })}
+                    {this.setState({ numberOfReviews: this.state.numberOfReviews + 1 })} */}
+                  </CardBody>
                 </Card>
               </Col>
             ))}
           </Row>
         </div>
+        {/* <h1>Average Rating: {this.state.ratingTotal / this.state.numberOfReviews}</h1> */}
+        <h1>Average Rating: {scoreTotal / scoreNum}</h1>
       </div>
     );
   }

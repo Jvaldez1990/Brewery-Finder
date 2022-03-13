@@ -13,6 +13,8 @@ public interface ReviewDao {
 
     Review addReview(Review aReview);
 
+    void deleteAllReviews(Long beer_id);
+
 //    void saveReview(@Valid Review review);
 //
 //    List<Review> searchReviewsByBeerId(long beerId);

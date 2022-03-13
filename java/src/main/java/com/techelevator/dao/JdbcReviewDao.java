@@ -63,6 +63,11 @@ public class JdbcReviewDao implements ReviewDao {
         return review;
     }
 
+    public void deleteAllReviews(Long beerId){
+        String sql = "DELETE FROM reviews WHERE beer_id = ?";
+        jdbcTemplate.update(sql, beerId);
+    }
+
 //    @Override
 //    public void saveReview(@Valid Review review) {
 //        String sqlSaveReview = "INSERT INTO reviews(description, rating, create_date, beer_id) VALUES(?,?,?,?)";

@@ -42,6 +42,11 @@ public class ReviewController {
         return reviewDAO.addReview(aReview);
     }
 
+    @RequestMapping(path = "/reviews/{beerId}", method = RequestMethod.DELETE)
+    public void deleteABeer(@PathVariable Long beerId) throws NotAllowedException {
+        reviewDAO.deleteAllReviews(beerId);
+    }
+
 //    @RequestMapping(path="/beerDetails/{id}/review", method=RequestMethod.POST)
 //    public String createNewMessage(@PathVariable("id") long beerId, @Valid @ModelAttribute("newReview") Review review, BindingResult result, RedirectAttributes flash) throws NotFoundException {
 //        flash.addFlashAttribute("newReview", review);
