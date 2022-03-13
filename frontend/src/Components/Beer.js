@@ -74,7 +74,7 @@ export class Beer extends Component {
   }
   render() {
     let scoreTotal = 0;
-    let scoreNum = 1;
+    let scoreNum = 0;
 
     for (let index = 0; index < this.state.reviews.length; index++) {
       scoreTotal += this.state.reviews[index].rating;
