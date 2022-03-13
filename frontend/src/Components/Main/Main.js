@@ -41,24 +41,44 @@ class Main extends Component {
   render() {
     return (
       <div>
-        {this.props.token.token !== undefined ? (
-          <div>
-            <Link to="/breweries">Breweries | </Link>
-            <Link to="/home">Home | </Link>
-            <Link to="/BreweryPage">Add Brewery |</Link>
-            <Link to="/login" onClick={this.handleLogout}>
-              Logout
-            </Link>
-            <Redirect to="/breweries" />
-          </div>
-        ) : (
-          <>
-            <Link to="/login"> Login |</Link>
-            <Link to="/register"> Register</Link>
-            <Link to="/BreweryPage">Add Brewery |</Link>
-            <Redirect to="/login" />
-          </>
-        )}
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <div class="container-fluid">
+                <a class="navbar-brand" href="#">Brews clues</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="navbar-nav">
+                  {this.props.token.token !== undefined ? (
+                    <div>
+                      <Link to="/breweries">Breweries | </Link>
+                      <Link to="/home">Home | </Link>
+                      <Link to="/BreweryPage">Add Brewery |</Link>
+                      <Link to="/login" onClick={this.handleLogout}>
+                        Logout
+                      </Link>
+                      <Redirect to="/breweries" />
+                    </div>
+                  ) : (
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                          <Link to="/login"> Login |</Link>
+                        </li>
+                        <li class="nav-item">
+                          <Link to="/register"> Register</Link>
+                        </li>
+                        <li class="nav-item">
+                          <Link to="/breweries">Breweries | </Link>
+                        </li>
+                        <li class="nav-item">
+                        <Redirect to="/login" />
+                        </li>
+                      </ul>
+                  )}
+                  </div>
+                </div>
+              </div>
+            </nav>
 
         <Switch>
           <Route exact path="/breweries/:id" component={Brewery} />

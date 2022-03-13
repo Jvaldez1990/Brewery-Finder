@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { addToken, addUser } from "../../Redux/actionCreators";
 import { baseUrl } from "../../Shared/baseUrl";
 import axios from "axios";
+import Card from "../../Shared/Card";
 
 const mapDispatchToProps = (dispatch) => ({
   addToken: () => dispatch(addToken()),
@@ -39,34 +40,55 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Please Sign In</h1>
-        <label class="sr-only">Username</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          class="form-control"
-          placeholder="Username"
-          v-model="user.username"
-          onChange={this.handleInputChange}
-          required
-        />
-        <label class="sr-only">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          class="form-control"
-          placeholder="Password"
-          v-model="user.password"
-          onChange={this.handleInputChange}
-          required
-        />
-        <Link to="/register">Need an account?</Link>
-        <button type="submit" onClick={this.handleLogin}>
-          Sign in
-        </button>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+          </div>
+          <div class="col-5">
+                <Card>
+              <h1>Please Sign In</h1>
+              <form>
+                  <div class="row mb-3">      
+                    <label class="sr-only col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-10"> 
+                      <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        class="form-control"
+                        placeholder="Username"
+                        v-model="user.username"
+                        onChange={this.handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="sr-only col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Password"
+                        v-model="user.password"
+                        onChange={this.handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <Link to="/register">Need an account?</Link>
+                  <br />
+                  <button type="submit" class="btn btn-primary" onClick={this.handleLogin}>
+                    Sign in
+                  </button>
+                </form>
+            </Card>
+          </div>
+          <div class="col">
+          </div>
+        </div>
       </div>
     );
   }
