@@ -122,13 +122,9 @@ export class BreweriesComponent extends Component {
                     brewery: brewery,
                     user: this.props.user,
                   },
-                }}
-              >
-                <Card title={`${brewery.name}`} color={"#A76B09"} hoverable>
-                  <CardBody className="ml-4">
-                    {" "}
-                    {<img width={200} height={150} className="brewery-image" src={brewery.breweryLogoUrl} />}
-                  </CardBody>
+                }}>
+                <Card title={`${brewery.name}`} bodyStyle={{ backgroundColor: "#A76B09" }} hoverable>
+                  <CardBody className="ml-4"> {<img width={200} height={150} className="brewery-image" src={brewery.breweryLogoUrl} />}</CardBody>
                 </Card>
               </Link>
             </Col>

@@ -53,8 +53,7 @@ class Main extends Component {
               data-bs-target="#navbarNavAltMarkup"
               aria-controls="navbarNavAltMarkup"
               aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
+              aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -66,7 +65,7 @@ class Main extends Component {
                     <Link to="/login" onClick={this.handleLogout}>
                       Logout
                     </Link>
-                    <Redirect to="/breweries" />
+                    {/* <Redirect to="/breweries" /> */}
                   </div>
                 ) : (
                   <ul class="nav justify-content-end">
@@ -75,9 +74,6 @@ class Main extends Component {
                     </li>
                     <li class="nav-item">
                       <Link to="/register">Register</Link>
-                    </li>
-                    <li class="nav-item">
-                      <Link to="/breweries">Breweries</Link>
                     </li>
                     <li class="nav-item">
                       <Redirect to="/login" />

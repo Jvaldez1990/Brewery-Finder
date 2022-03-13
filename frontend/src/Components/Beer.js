@@ -118,7 +118,7 @@ export class Beer extends Component {
           <Row gutter={[16, 16]} className="brewery-card-container">
             {this.state.reviews.map((review) => (
               <Col xs={24} sm={12} lg={6} className="brewery-card" key={review.id}>
-                <Card className="bg-info" title={`${review.name}`} hoverable>
+                <Card className="" bodyStyle={{ backgroundColor: "#A76B09" }} title={`${review.name}`} hoverable>
                   <CardBody>
                     {review.description}
                     {/* {(scoreTotal += review.rating)}

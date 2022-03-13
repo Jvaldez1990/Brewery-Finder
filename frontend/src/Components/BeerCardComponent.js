@@ -29,6 +29,7 @@ export class BeerCardComponent extends Component {
     return (
       <Col xs={24} sm={12} lg={6} className="brewery-card" key={this.props.beer.id}>
         <Card
+          bodyStyle={{ backgroundColor: "#A76B09" }}
           title={`${this.props.beer.name}`}
           extra={
             this.state.isRoleBrewer ? (
