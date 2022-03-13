@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { Breweries } from "./breweries";
+// import { Breweries } from "./breweries";
 import { Token } from "./token";
 import { User } from "./user";
 
@@ -9,7 +9,7 @@ export const ConfigureStore = () => {
     combineReducers({
       token: Token,
       user: User,
-      breweries: Breweries,
+      // breweries: Breweries,
     }),
     applyMiddleware(thunk)
   );

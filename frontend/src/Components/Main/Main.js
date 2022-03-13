@@ -45,7 +45,7 @@ class Main extends Component {
           <div>
             <Link to="/breweries">Breweries | </Link>
             <Link to="/home">Home | </Link>
-            <Link to="/BreweryPage">Add Brewery |</Link>
+            {/* <Link to="/BreweryPage">Add Brewery |</Link> */}
             <Link to="/login" onClick={this.handleLogout}>
               Logout
             </Link>
@@ -55,7 +55,7 @@ class Main extends Component {
           <>
             <Link to="/login"> Login |</Link>
             <Link to="/register"> Register</Link>
-            <Link to="/BreweryPage">Add Brewery |</Link>
+            {/* <Link to="/BreweryPage">Add Brewery |</Link> */}
             <Redirect to="/login" />
           </>
         )}
@@ -66,7 +66,7 @@ class Main extends Component {
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
           <Route path="/breweries" component={() => <BreweriesComponent BreweriesComponent user={this.props.user} />} />
-          <Route path="/BreweryPage" component={() => <BreweryPage />} />
+          {/* <Route path="/BreweryPage" component={() => <BreweryPage />} /> */}
           <Route path="/home" component={this.props.token.token !== undefined ? () => <Home /> : null} />
           <Redirect to="/breweries" />
         </Switch>
