@@ -94,7 +94,7 @@ class Main extends Component {
           <Route exact path="/beer/:id" component={Beer} />
           <Route path="/login" component={() => <Login />} />
           <Route path="/register" component={() => <Register />} />
-          <Route path="/breweries" component={() => <BreweriesComponent BreweriesComponent user={this.props.user} />} />
+          <Route path="/breweries" component={() => <BreweriesComponent user={this.props.user} />} />
           {/* <Route path="/BreweryPage" component={() => <BreweryPage />} /> */}
           <Route path="/home" component={this.props.token.token !== undefined ? () => <Home /> : null} />
           <Redirect to="/breweries" />

@@ -46,43 +46,45 @@ class Login extends Component {
           <div class="col-5">
             <Card>
               <h1>Please Sign In</h1>
-              {/* <form> */}
-              <div class="row mb-3">
-                <label class="sr-only col-sm-2 col-form-label">Username</label>
-                <div class="col-sm-10">
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    class="form-control"
-                    placeholder="Username"
-                    v-model="user.username"
-                    onChange={this.handleInputChange}
-                    required
-                  />
+              <form>
+                <div class="row mb-3">
+                  <label class="sr-only col-sm-2 col-form-label">Username</label>
+                  <div class="col-sm-10">
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      class="form-control"
+                      placeholder="Username"
+                      v-model="user.username"
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
-              <div class="row mb-3">
-                <label class="sr-only col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    class="form-control"
-                    placeholder="Password"
-                    v-model="user.password"
-                    onChange={this.handleInputChange}
-                    required
-                  />
+                <div class="row mb-3">
+                  <label class="sr-only col-sm-2 col-form-label">Password</label>
+                  <div class="col-sm-10">
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      class="form-control"
+                      placeholder="Password"
+                      v-model="user.password"
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
-              <Link to="/register">Need an account?</Link>
-              <br />
-              <button type="submit" class="btn btn-primary" onClick={this.handleLogin}>
-                Sign in
-              </button>
-              {/* </form> */}
+                <Link to="/register">Need an account?</Link>
+                <br />
+                <Link to="/breweries">
+                  <button type="submit" class="btn btn-primary" onClick={this.handleLogin}>
+                    Sign in
+                  </button>
+                </Link>
+              </form>
             </Card>
           </div>
           <div class="col"></div>
