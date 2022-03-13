@@ -4,6 +4,7 @@ import { Card, Row, Col, Input, Modal } from "antd";
 import { EditOutlined, SettingOutlined } from "@ant-design/icons";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { CardBody } from "reactstrap";
 
 export class BreweriesComponent extends Component {
   constructor(props) {
@@ -80,7 +81,7 @@ export class BreweriesComponent extends Component {
     // const { breweries } = this.state;
 
     return (
-      <div>
+      <div className="container col-10 mt-3">
         {this.state.isRoleAdmin ? (
           <button onClick={this.toggleModal}>
             <EditOutlined />
@@ -111,7 +112,7 @@ export class BreweriesComponent extends Component {
             <input type="number" id="brewerId" name="BrewerId" onChange={(e) => this.setState({ brewerId: e.target.value })} />
           </Form>
         </Modal>
-        <Row gutter={[16, 16]} className="brewery-card-container">
+        <Row gutter={[16, 16]} className="">
           {this.state.breweries.map((brewery) => (
             <Col xs={24} sm={12} lg={6} className="brewery-card" key={brewery.id}>
               <Link
@@ -123,11 +124,12 @@ export class BreweriesComponent extends Component {
                   },
                 }}
               >
-                <Card
-                  title={`${brewery.name}`}
-                  extra={<img width={100} className="brewery-image" src={brewery.breweryLogoUrl} />}
-                  hoverable
-                ></Card>
+                <Card title={`${brewery.name}`} color={"#A76B09"} hoverable>
+                  <CardBody className="ml-4">
+                    {" "}
+                    {<img width={200} height={150} className="brewery-image" src={brewery.breweryLogoUrl} />}
+                  </CardBody>
+                </Card>
               </Link>
             </Col>
           ))}

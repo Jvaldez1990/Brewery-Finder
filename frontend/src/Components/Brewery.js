@@ -3,6 +3,7 @@ import { Card, Row, Col, Input } from "antd";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../Shared/baseUrl";
 import AddBeer from "./add/update/AddBeer";
+import { CardBody } from "reactstrap";
 
 export class Brewery extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export class Brewery extends Component {
   render() {
     const { brewery } = this.state.brewery;
     return (
-      <div class="container">
+      <div class="container col-9 mt-3">
         <div class="row">
           <div class="col">
             <h1>{brewery.name}</h1>
@@ -45,36 +46,26 @@ export class Brewery extends Component {
             {/* <h1> {brewery.breweryId}</h1> */}
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            {/* <Card reverse="true">
-              <AddBeer />
-            </Card> */}
-          </div>
-          <div class="col">
-            <Row gutter={[16, 16]} className="brewery-card-container">
-              {this.state.beers.map((beer) => (
-                <Col xs={24} sm={12} lg={6} className="brewery-card" key={beer.id}>
-                  <Link
-                    to={{
-                      pathname: `/beer/${beer.id}`,
-                      state: {
-                        beer: beer,
-                        user: this.props.location.state,
-                      },
-                    }}
-                  >
-                    <Card
-                      title={`${beer.name}`}
-                      extra={<img width={100} className="brewery-image img-fluid" src={beer.imgUrl} />}
-                      hoverable
-                    ></Card>
-                  </Link>
-                </Col>
-              ))}
-            </Row>
-          </div>
-        </div>
+        <Row gutter={[8, 8]} className="brewery-card-container">
+          {this.state.beers.map((beer) => (
+            <Col xs={24} sm={12} lg={6} className="brewery-card" key={beer.id}>
+              <Link
+                to={{
+                  pathname: `/beer/${beer.id}`,
+                  state: {
+                    beer: beer,
+                    user: this.props.location.state,
+                  },
+                }}
+              >
+                <Card title={`${beer.name}`} hoverable>
+                  {" "}
+                  <CardBody>{<img width={200} height={100} className="" src={beer.imgUrl} />}</CardBody>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+        </Row>
       </div>
     );
   }

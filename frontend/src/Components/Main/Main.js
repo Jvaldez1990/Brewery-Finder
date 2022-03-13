@@ -43,8 +43,8 @@ class Main extends Component {
       <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-              Brews clues
+            <a class="navbar-brand" href="/login">
+              Brews Clues
             </a>
             <button
               class="navbar-toggler"

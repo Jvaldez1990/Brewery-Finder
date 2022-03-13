@@ -73,7 +73,7 @@ export class Beer extends Component {
   render() {
     const { beer } = this.state.beer;
     return (
-      <>
+      <div className="container col-9 mt-3">
         <div>
           <img width={500} src={beer.imgUrl} alt="" />
           <h1>{beer.name}</h1>
@@ -122,7 +122,7 @@ export class Beer extends Component {
             ))}
           </Row>
         </div>
-      </>
+      </div>
     );
   }
 }
