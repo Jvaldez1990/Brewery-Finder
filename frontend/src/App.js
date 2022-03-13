@@ -2,7 +2,7 @@ import Main from "./Components/Main/Main";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ConfigureStore } from "./Redux/configureStore";
-import bootstrap from 'bootstrap';
+import bootstrap from "bootstrap";
 import Navbar from "./Components/Home/Navbar";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
@@ -15,12 +15,8 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <div style={{ backgroundColor: "#DDA74F" }}>
-          <Navbar />
-          {/* <Home /> */}
-          {/* <Login></Login> */}
           <Main />
         </div>
-        {/* <BreweriesComponent /> */}
       </BrowserRouter>
     </Provider>
   );
