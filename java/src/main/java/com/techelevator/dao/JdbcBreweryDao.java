@@ -18,7 +18,7 @@ public class JdbcBreweryDao implements BreweryDao {
 
     public JdbcBreweryDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("breweries").usingGeneratedKeyColumns("id");
+        this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("breweries").usingGeneratedKeyColumns("brewery_id");
     }
 
     @Override
