@@ -67,16 +67,27 @@ export class BreweriesComponent extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state.user.id);
-
-    if (this.state.user.id == 2) {
-      this.setState({ isRoleAdmin: true });
-    }
     fetch(baseUrl + "/breweries")
       .then((response) => response.json())
       .then((response) => this.setState({ breweries: response }));
+    this.checkRole();
   }
+  checkRole = () => {
+    // console.log(this.props.user.authorities[0]);
+    // const role = JSON.stringify(this.props.user.authorities[0]);
+    // const checker = ({"name":"ROLE_ADMIN"})
+    // console.log(role);
+    // console.log("{ name: ROLE_ADMIN }");
+    // console.log('{"name":"ROLE_ADMIN"}');
 
+    // if ({"name":"ROLE_ADMIN"} == role) {
+    //   this.setState({ isRoleAdmin: true });
+    // }
+
+    if (this.props.user.id == 2) {
+      this.setState({ isRoleAdmin: true });
+    }
+  };
   liftBreweryState = (e) => {
     console.log(e);
   };
