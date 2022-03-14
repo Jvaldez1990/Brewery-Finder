@@ -76,7 +76,7 @@ class Main extends Component {
                       <Link to="/register">Register</Link>
                     </li>
                     <li class="nav-item">
-                      <Redirect to="/home" />
+                      <Redirect to="/login" />
                     </li>
                   </ul>
                 )}
