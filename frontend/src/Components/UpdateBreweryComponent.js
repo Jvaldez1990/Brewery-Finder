@@ -1,56 +1,69 @@
 import React, { Component } from "react";
-import { Modal, Form, Input, Button } from "antd";
 import { DeleteOutlined, SmileOutlined, EditOutlined } from "@ant-design/icons";
-import { baseUrl } from "../Shared/baseUrl";
+import { Modal, Form, Input, Button } from "antd";
 import { Link, Redirect, Switch, Route, withRouter } from "react-router-dom";
+import { BreweriesComponent } from "./BreweriesComponent";
 
-export class AddBeerModal extends Component {
+import { baseUrl } from "../Shared/baseUrl";
+
+export class UpdateBreweryComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isModalVisible: false,
-      name: "",
-      imgUrl: "",
-      info: "",
-      abv: "",
-      type: "",
-      ibu: 4.2,
-      active: true,
-      userId: 1,
+      brewery: this.props.brewery,
+      breweryId: this.props.brewery.breweryId,
+      name: this.props.brewery.name,
+      brewAddress: this.props.brewery.address,
+      brewCity: this.props.brewery.city,
+      brewZip: this.props.brewery.zipcode,
+      brewPhone: this.props.brewery.phoneNumber,
+      brewDesc: this.props.brewery.description,
+      brewLogo: this.props.brewery.breweryLogoUrl,
+      brewSite: this.props.brewery.websiteUrl,
+      brewerId: this.props.brewery.userId,
+      brewHours: this.props.brewery.hours,
     };
   }
-  postNewBeer = () => {
-    const BeerObject = {
-      info: this.state.info,
-      breweryId: this.props.brewery.breweryId,
-      imgUrl: this.state.imgUrl,
-      abv: Number(this.state.abv),
-      type: this.state.type,
+
+  postNewBrewery = () => {
+    const breweryObject = {
+      breweryId: this.state.breweryId,
       name: this.state.name,
-      active: this.state.active,
+      address: this.state.brewAddress,
+      city: this.state.brewCity,
+      zipcode: this.state.brewZip,
+      phoneNumber: this.state.brewPhone,
+      description: this.state.brewDesc,
+      breweryLogoUrl: this.state.brewLogo,
+      userId: this.state.brewerId,
+      hours: this.state.brewHours,
+      websiteUrl: this.state.brewSite,
     };
 
-    fetch(baseUrl + "/addBeer", {
-      method: "POST",
-      body: JSON.stringify(BeerObject),
+    fetch(baseUrl + "/breweries", {
+      method: "PUT",
+      body: JSON.stringify(breweryObject),
       headers: {
         "Content-type": "application/json",
       },
       credentials: "same-origin",
     })
       .then((response) => response.json())
-      .then((data) => this.props.updateBeers(data));
+      .then((data) => this.props.liftBrewery(data));
 
-    // this.props.updateBeers(BeerObject);
-    // console.log(BeerObject);
+    // this.props.history.push("/breweries");
+    // console.log(breweryObject);
+    // this.props.liftBrewery(breweryObject);
   };
 
   handleSubmit = () => {
     this.setState({
       isModalVisible: !this.state.isModalVisible,
     });
-    this.postNewBeer();
+    this.postNewBrewery();
+    // <Link to="/breweries"></Link>;
   };
 
   toggleModal = () => {
@@ -63,10 +76,10 @@ export class AddBeerModal extends Component {
     return (
       <>
         <Button onClick={this.toggleModal}>
-          <EditOutlined /> Add A New Beer
+          <EditOutlined /> Change Brewery Details
         </Button>
         <Modal
-          title="Add A New Beer"
+          title="Update Brewery Info"
           visible={this.state.isModalVisible}
           onOk={this.handleSubmit}
           onCancel={this.toggleModal}
@@ -104,4 +117,4 @@ export class AddBeerModal extends Component {
   }
 }
 
-export default withRouter(AddBeerModal);
+export default withRouter(UpdateBreweryComponent);

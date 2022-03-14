@@ -25,12 +25,12 @@ CREATE TABLE users (
 
 CREATE TABLE breweries (
     brewery_id serial,
-    name varchar(255) NOT NULL,
-    address varchar(255) NOT NULL,
-    city varchar(50) NOT NULL,
-    zipcode varchar(15) NOT NULL,
+    name varchar(255) ,
+    address varchar(255) ,
+    city varchar(50) ,
+    zipcode varchar(15) ,
     phone_number varchar(15),
-    description text NOT NULL,
+    description text,
     brewery_logo_url varchar(255),
     website_url varchar(255),
     user_id bigint,

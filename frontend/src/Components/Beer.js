@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { baseUrl } from "../Shared/baseUrl";
 import { Card, Row, Col, Button, Modal } from "antd";
 import { EditOutlined, SettingOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 import { CardBody } from "reactstrap";
 import { Form } from "react-bootstrap";
+import { Link, Redirect, Switch, Route, withRouter } from "react-router-dom";
 
 export class Beer extends Component {
   constructor(props) {
@@ -85,7 +85,7 @@ export class Beer extends Component {
     return (
       <div className="container col-9 mt-3">
         <div>
-          <img width={500} src={beer.imgUrl} alt="" />
+          <img width={300} src={beer.imgUrl} className="fluid" />
           <h1>{beer.name}</h1>
           <h1>{beer.info}</h1>
           <h1>{beer.type}</h1>
@@ -112,7 +112,7 @@ export class Beer extends Component {
               <br />
               <label>Rating</label>
               <br />
-              <input type="number" id="rating" name="rating" onChange={(e) => this.setState({ rating: e.target.value })} />
+              <input type="number" id="rating" name="rating" min="1" max="5" onChange={(e) => this.setState({ rating: e.target.value })} />
             </Form>
           </Modal>
           <Row gutter={[16, 16]} className="brewery-card-container">
@@ -138,4 +138,4 @@ export class Beer extends Component {
   }
 }
 
-export default Beer;
+export default withRouter(Beer);

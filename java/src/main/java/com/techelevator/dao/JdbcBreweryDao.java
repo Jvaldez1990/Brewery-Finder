@@ -83,12 +83,12 @@ public class JdbcBreweryDao implements BreweryDao {
     public Brewery updateBrewery(Brewery aBrewery) {
         String sqlUpdateBrewery = "UPDATE breweries SET name = ?, address = ?,"
                 + " city = ?, zipcode = ?, phone_number = ?, description = ?, "
-                + "brewery_logo_url = ?, user_id = ?, hours = ?, lat = ?, lng = ?"
+                + "brewery_logo_url = ?, user_id = ?, hours = ?, website_url = ?"
                 + "WHERE brewery_id = ?";
         jdbcTemplate.update(sqlUpdateBrewery, aBrewery.getName(), aBrewery.getAddress(),
                 aBrewery.getCity(), aBrewery.getZipcode(), aBrewery.getPhoneNumber(),
                 aBrewery.getDescription(), aBrewery.getBreweryLogoUrl(), aBrewery.getUserId(),
-                aBrewery.getHours(), aBrewery.getBreweryId());
+                aBrewery.getHours(), aBrewery.getWebsiteUrl(), aBrewery.getBreweryId());
 
         Brewery brewery = null;
         String sqlGetABrewery = "SELECT * FROM breweries WHERE brewery_id = ?";

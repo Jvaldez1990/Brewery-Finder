@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, Row, Col, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link, Redirect, Switch, Route, withRouter } from "react-router-dom";
 import { baseUrl } from "../Shared/baseUrl";
 import { CardBody } from "reactstrap";
 import { DeleteOutlined, SmileOutlined } from "@ant-design/icons";
@@ -59,4 +59,4 @@ export class BeerCardComponent extends Component {
   }
 }
 
-export default BeerCardComponent;
+export default withRouter(BeerCardComponent);

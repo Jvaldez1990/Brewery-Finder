@@ -3,8 +3,8 @@ import { baseUrl } from "../Shared/baseUrl";
 import { Card, Row, Col, Input, Modal } from "antd";
 import { EditOutlined, SettingOutlined } from "@ant-design/icons";
 import { Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { CardBody } from "reactstrap";
+import { Link, Redirect, Switch, Route, withRouter } from "react-router-dom";
 
 export class BreweriesComponent extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ export class BreweriesComponent extends Component {
       city: this.state.brewCity,
       zipcode: this.state.brewZip,
       phoneNumber: this.state.brewPhone,
-      description: this.state.brewPhone,
+      description: this.state.brewDesc,
       breweryLogoUrl: this.state.brewLogo,
       userId: this.state.brewerId,
       hours: this.state.brewHours,
@@ -77,6 +77,10 @@ export class BreweriesComponent extends Component {
       .then((response) => this.setState({ breweries: response }));
   }
 
+  liftBreweryState = (e) => {
+    console.log(e);
+  };
+
   render() {
     // const { breweries } = this.state;
 
@@ -107,9 +111,9 @@ export class BreweriesComponent extends Component {
               onChange={(e) => this.setState({ description: e.target.value })}
             ></textarea> */}
             <br />
-            <label>Rating</label>
+            <label>Brewer Id</label>
             <br />
-            <input type="number" id="brewerId" name="BrewerId" onChange={(e) => this.setState({ brewerId: e.target.value })} />
+            <input type="number" id="brewerId" name="BrewerId" min="3" onChange={(e) => this.setState({ brewerId: e.target.value })} />
           </Form>
         </Modal>
         <Row gutter={[16, 16]} className="">
@@ -121,6 +125,7 @@ export class BreweriesComponent extends Component {
                   state: {
                     brewery: brewery,
                     user: this.props.user,
+                    // liftState: this.liftBreweryState,
                   },
                 }}>
                 <Card title={`${brewery.name}`} bodyStyle={{ backgroundColor: "#A76B09" }} hoverable>
@@ -135,4 +140,4 @@ export class BreweriesComponent extends Component {
   }
 }
 
-export default BreweriesComponent;
+export default withRouter(BreweriesComponent);
