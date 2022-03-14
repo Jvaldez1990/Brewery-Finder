@@ -19,11 +19,11 @@ const Home = () => {
     setAge(30);
   };
 
-  //<BreweryList breweries={breweries.filter((brewery) => brewery.rating === '5')} title='Top Rated Brews'/>
+  <BreweryList breweries={breweries.filter((brewery) => brewery.rating === "5")} title="Top Rated Brews" />;
 
   return (
     <div className="home">
-      {/* <BreweryList breweries={breweries} title="All Breweries" />
+      <BreweryList breweries={breweries} title="All Breweries" />
       <BreweryList breweries={breweries.filter((brewery) => brewery.beerRating === "5")} title="Top Rated Brews" />
 
       {breweries.map((brewery) => (
@@ -36,7 +36,7 @@ const Home = () => {
       <p>
         {name} is {age} years old
       </p>
-      <button onClick={handleClick}>Search</button> */}
+      <button onClick={handleClick}>Search</button>
     </div>
   );
 };

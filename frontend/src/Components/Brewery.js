@@ -3,8 +3,9 @@ import { Card, Row, Col, Button } from "antd";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../Shared/baseUrl";
 import { CardBody } from "reactstrap";
-import { DeleteOutlined, SmileOutlined } from "@ant-design/icons";
+import { DeleteOutlined, SmileOutlined, EditOutlined } from "@ant-design/icons";
 import { BeerCardComponent } from "./BeerCardComponent";
+import AddBeerModal, { addBeerModal } from "./AddBeerModal";
 
 export class Brewery extends Component {
   constructor(props) {
@@ -53,6 +54,14 @@ export class Brewery extends Component {
       .then((response) => this.setState({ beers: response }));
   }
 
+  handleModal = () => {
+    <AddBeerModal brewery={this.props.location.brewery} isOpen={true} />;
+  };
+
+  updateBeers = (newBeer) => {
+    this.setState({ beers: [...this.state.beers, newBeer] });
+  };
+
   render() {
     const { brewery } = this.state.brewery;
 
@@ -73,43 +82,13 @@ export class Brewery extends Component {
             <img width={500} src={brewery.breweryLogoUrl} class="img-fluid" alt="" />
             {/* <h1> {brewery.breweryId}</h1> */}
           </div>
-        </div>
+        </div>{" "}
+        {this.state.isRoleBrewer ? <AddBeerModal brewery={this.props.location.state.brewery} updateBeers={this.updateBeers} /> : <div></div>}
         <Row gutter={[8, 8]} className="brewery-card-container">
           {this.state.beers.map((beer) => (
             <BeerCardComponent beer={beer} handleDelete={this.handleDelete} id={beer.id} user={this.props.location.state.user} />
           ))}
         </Row>
-        {/* <Row gutter={[8, 8]} className="brewery-card-container">
-          {this.state.beers.map((beer) => (
-            <Col xs={24} sm={12} lg={6} className="brewery-card" key={beer.id}>
-              <Card
-                title={`${beer.name}`}
-                extra={
-                  this.state.isRoleBrewer ? (
-                    <Button onClick={this.handleDelete(beer)}>
-                      <DeleteOutlined />
-                    </Button>
-                  ) : (
-                    <></>
-                  )
-                }
-                hoverable>
-                <CardBody>
-                  <Link
-                    to={{
-                      pathname: `/beer/${beer.id}`,
-                      state: {
-                        beer: beer,
-                        user: this.props.location.state,
-                      },
-                    }}>
-                    {<img width={200} height={100} className="" src={beer.imgUrl} />}
-                  </Link>
-                </CardBody>
-              </Card>
-            </Col>
-          ))}
-        </Row> */}
       </div>
     );
   }
