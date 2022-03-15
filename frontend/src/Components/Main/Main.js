@@ -10,7 +10,8 @@ import Navbar from "../Home/Navbar";
 import BreweriesComponent from "../BreweriesComponent";
 import Brewery from "../Brewery";
 import Beer from "../Beer";
-import BreweryPage from "../add/update/BreweryPage";
+import BreweryPage from "../add/update/BreweryPage"; 
+import Footer from "./Footer";
 
 const mapStateToProps = (state) => {
   return {
@@ -96,6 +97,7 @@ class Main extends Component {
           <Route path="/home" component={this.props.token.token !== undefined ? () => <Home /> : null} />
           <Redirect to="/breweries" />
         </Switch>
+        <Footer />
       </div>
     );
   }
