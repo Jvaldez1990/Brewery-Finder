@@ -1,0 +1,65 @@
+
+  .main-footer {
+    color: white;
+    background-color: #272A31;
+    margin: auto;
+    box-sizing: border-box;
+    max-width: 1500px;
+    padding-top: 3em;
+    padding: 1em 1em 1em;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    position: sticky;
+    top: 100%;
+    margin-top: 175px;
+  }
+
+  .list-unstyled {
+    font-size: 20px;
+
+  }
+
+  .list-unstyled, li {
+    font-size: 15px;
+    color:#bbbb;
+    padding-bottom: 5px;
+
+  }
+
+  .col h4 {
+    color:#ffff;
+    font-size: 18px;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+    position: relative;
+  }
+  
+  .col h4::before {
+    content: '';
+    position: absolute;
+    left:0;
+    bottom: -10px;
+    background-color: #A76B09;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+  }
+
+  .footer-item a {
+    color:#bbbb;
+    font-size: 15px;
+  }
+
+  .footer-item a:hover {
+    color:#A76B09;
+   padding-left: 10px;
+   padding-top: 1rem;
+  }
+
+
+  
+
+
+
+  
