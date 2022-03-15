@@ -60,11 +60,12 @@ class Main extends Component {
               <div class="navbar-nav">
                 {this.props.token.token !== undefined ? (
                   <div>
-                    <Link to="/breweries">Breweries</Link>
-                    <Link to="/home">Home</Link>
                     <Link to="/login" onClick={this.handleLogout}>
                       Logout
                     </Link>
+                    <Link to="/breweries">Breweries</Link>
+                    <Link to="/home">Home</Link>
+
                     {/* <Redirect to="/breweries" /> */}
                   </div>
                 ) : (

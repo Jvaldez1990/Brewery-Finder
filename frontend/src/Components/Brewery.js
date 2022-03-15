@@ -45,9 +45,14 @@ export class Brewery extends Component {
     const { brewery } = this.state.brewery;
     const { user } = this.state.user;
 
-    if (this.props.location.state.user.authorities[0].name == "ROLE_BREWER") {
+    console.log(this.state.brewery.brewery.userId);
+
+    if (this.props.location.state.user.id == this.state.brewery.brewery.userId) {
       this.setState({ isRoleBrewer: true });
     }
+    // if (this.props.location.state.user.authorities[0].name == "ROLE_BREWER") {
+    //   this.setState({ isRoleBrewer: true });
+    // }
 
     // console.log(this.props.location.state.user.authorities[0].name);
     fetch(baseUrl + `/breweries/${brewery.breweryId}/beers`)
@@ -99,7 +104,13 @@ export class Brewery extends Component {
         {this.state.isRoleBrewer ? <UpdateBreweryComponent brewery={this.props.location.state.brewery} liftBrewery={this.breweryUpdate} /> : <div></div>}
         <Row gutter={[8, 8]} className="brewery-card-container">
           {this.state.beers.map((beer) => (
-            <BeerCardComponent beer={beer} handleDelete={this.handleDelete} id={beer.id} user={this.props.location.state.user} />
+            <BeerCardComponent
+              beer={beer}
+              handleDelete={this.handleDelete}
+              id={beer.id}
+              user={this.props.location.state.user}
+              breweryId={this.state.brewery.brewery.userId}
+            />
           ))}
         </Row>
       </div>

@@ -19,7 +19,7 @@ export class BeerCardComponent extends Component {
   };
 
   componentDidMount() {
-    if (this.props.user.authorities[0].name == "ROLE_BREWER") {
+    if (this.props.breweryId == this.props.user.id) {
       this.setState({ isRoleBrewer: true });
     }
   }
