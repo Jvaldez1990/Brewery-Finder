@@ -84,7 +84,7 @@ export class BreweriesComponent extends Component {
     //   this.setState({ isRoleAdmin: true });
     // }
 
-    if (this.props.user.id == 2) {
+    if (this.props.user.id === 2) {
       this.setState({ isRoleAdmin: true });
     }
   };
@@ -97,6 +97,7 @@ export class BreweriesComponent extends Component {
 
     return (
       <div className="container col-10 mt-3">
+        {/* <>{this.props.user}</> */}
         {this.state.isRoleAdmin ? (
           <button onClick={this.toggleModal}>
             <EditOutlined />

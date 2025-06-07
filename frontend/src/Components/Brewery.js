@@ -83,6 +83,7 @@ export class Brewery extends Component {
     const { brewery } = this.state.brewery;
 
     return (
+      
       <div class="container col-9 mt-3">
         <div class="row">
           <div class="col">

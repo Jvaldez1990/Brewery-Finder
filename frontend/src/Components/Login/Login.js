@@ -1,15 +1,16 @@
-import { Component, useState } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Card } from "antd";
+import "./Login.css";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addToken, addUser } from "../../Redux/actionCreators";
 import { baseUrl } from "../../Shared/baseUrl";
 import axios from "axios";
-import Card from "../../Shared/Card";
 
 const mapDispatchToProps = (dispatch) => ({
-  addToken: () => dispatch(addToken()),
-  addUser: () => dispatch(addUser()),
+  addToken: (token) => dispatch(addToken(token)),
+  addUser: (user) => dispatch(addUser(user)),
 });
 
 class Login extends Component {
@@ -22,13 +23,19 @@ class Login extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleLogin = async () => {
+  handleLogin = async (event) => {
+    event.preventDefault();
     const data = { username: this.state.username, password: this.state.password };
-
-    const userWithToken = await axios.post(baseUrl + "/login", data);
-
-    await this.props.dispatch(addToken(userWithToken.data.token));
-    await this.props.dispatch(addUser(userWithToken.data.user));
+    try {
+      const response = await axios.post(baseUrl + "/login", data);
+      const { token, user } = response.data;
+      localStorage.setItem("token", token);
+      this.props.addToken(token);
+      this.props.addUser(user);
+      this.props.history.push("/breweries");
+    } catch (error) {
+      this.setState({ error: "Invalid username or password" });
+    }
   };
 
   handleInputChange = (event) => {
@@ -40,56 +47,30 @@ class Login extends Component {
 
   render() {
     return (
-      <div class="container">
-        <div class="row">
-          <div class="col"></div>
-          <Card>
-            <h1>Please Sign In</h1>
-            <form>
-              <div class="row mb-3">
-                <label class="sr-only col-sm-2 col-form-label">Username</label>
-                <div class="col-sm-10">
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    class="form-control"
-                    placeholder="Username"
-                    v-model="user.username"
-                    onChange={this.handleInputChange}
-                    required
-                  />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label class="sr-only col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    class="form-control"
-                    placeholder="Password"
-                    v-model="user.password"
-                    onChange={this.handleInputChange}
-                    required
-                  />
-                </div>
-              </div>
+      <div className="login-container">
+        <div className="login-card">
+          <h1>Please Sign In</h1>
+          <form onSubmit={this.handleLogin}>
+            <label htmlFor="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Username" onChange={this.handleInputChange} required />
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" onChange={this.handleInputChange} required />
+            <button type="submit" className="btn btn-primary">
+              Sign in
+            </button>
+            <div style={{ marginTop: "1rem", textAlign: "center" }}>
               <Link to="/register">Need an account?</Link>
-              <br />
-              <Link to="/breweries">
-                <button type="submit" class="btn btn-primary" onClick={this.handleLogin}>
-                  Sign in
-                </button>
-              </Link>
-            </form>
-          </Card>
-          <div class="col"></div>
+            </div>
+            {this.state.error && (
+              <div className="alert alert-danger mt-3" role="alert">
+                {this.state.error}
+              </div>
+            )}
+          </form>
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(connect(mapDispatchToProps)(Login));
+export default withRouter(connect(null, mapDispatchToProps)(Login));

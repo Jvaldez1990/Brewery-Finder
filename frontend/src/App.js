@@ -7,6 +7,7 @@ import Navbar from "./Components/Home/Navbar";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import BreweriesComponent from "./Components/BreweriesComponent";
+import BeerSudsCanvasBackground from "./BeerSudsCanvasBackground";
 
 const store = ConfigureStore();
 
@@ -14,7 +15,8 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <div style={{ backgroundColor: "#DDA74F" }}>
+        <div>
+          <BeerSudsCanvasBackground />
           <Main />
         </div>
       </BrowserRouter>

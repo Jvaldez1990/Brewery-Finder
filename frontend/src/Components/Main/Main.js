@@ -12,6 +12,7 @@ import Brewery from "../Brewery";
 import Beer from "../Beer";
 import BreweryPage from "../add/update/BreweryPage"; 
 import Footer from "./Footer";
+import './Main.css';
 
 const mapStateToProps = (state) => {
   return {
